@@ -1,0 +1,20 @@
+{% extends 'files/base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+    <div class="container py-5">
+        <!-- Back Button -->
+        <a href="{% url 'blog' %}" class="btn btn-secondary mb-4">Back</a>
+
+        <h2 class="text-center mb-4">{{ post.title }}</h2>
+        <div class="text-center mb-4">
+            <img src="{{ post.image.url }}" class="img-fluid" alt="{{ post.title }}">
+        </div>
+        <p class="text-muted text-center mb-4">{{ post.created|date:"F j, Y" }}</p>
+        <div class="content">
+            <!-- Render content with HTML formatting -->
+            <p>{{ post.content|safe }}</p>
+        </div>
+    </div>
+{% endblock %}

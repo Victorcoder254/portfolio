@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victor Okoth | AI Engineer & Entrepreneur</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="description" content="Victor Okoth's personal portfolio.">
+    <meta name="keywords" content="Victor Okoth, AI Engineer, Software Developer, Portfolio">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#" data-toggle="modal" data-target="#profileModal">
+            <img src="{{ about_info.image.url }}" alt="Victor Okoth" class="rounded-circle" width="50" height="50" style="margin-right: 10px;">
+            Victor Okoth
+        </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="ml-auto">
+                    <a href="{% url 'blog' %}" class="btn btn-primary mr-2">Blog</a>
+                    <a href="{% url 'contact' %}" class="btn btn-primary">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <h2 class="text-center mb-4">Visitor Metrics</h2>
+        <p class="lead">Total Visitors: {{ total_visitors }}</p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>IP Address</th>
+                    <th>Location</th>
+                    <th>Visit Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for visitor in visitors %}
+                    <tr>
+                        <td>{{ visitor.ip_address }}</td>
+                        <td>{{ visitor.location }}</td>
+                        <td>{{ visitor.visit_date }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Contact</h5>
+                    <p>Email: {{ footer_info.email }}</p>
+                    <p>Phone: {{ footer_info.phone }}</p>
+                    <p>Address: {{ footer_info.address }}</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Links</h5>
+                    <a href="{% url 'contact' %}" class="text-white">Contact</a><br>
+                    <a href="{% url 'blog' %}" class="text-white">Blog</a>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Me</h5>
+                    <a href="{{ footer_info.twitter }}" class="text-white">Twitter</a><br>
+                    <a href="{{ footer_info.linkedin }}" class="text-white">LinkedIn</a><br>
+                    <a href="{{ footer_info.github }}" class="text-white">GitHub</a>
+                </div>
+            </div>
+            <hr>
+            <p class="text-center">&copy; 2024 Victor Okoth. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Tweaks -->
+    <script>
+        $(document).ready(function(){
+            // Smooth scrolling for all links
+            $('a').on('click', function(event){
+                if (this.hash !== "") {
+                    event.preventDefault();
+                    var hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800, function(){
+                        window.location.hash = hash;
+                    });
+                }
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
